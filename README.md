@@ -1,48 +1,64 @@
 # FastAPI PostgreSQL Project
 
-Проект на FastAPI с использованием PostgreSQL и SQLAlchemy.
+Проект на FastAPI с PostgreSQL базой данных для управления задачами.
+
+## Технологии
+
+- FastAPI
+- PostgreSQL
+- SQLAlchemy
+- Alembic
+- Pydantic
 
 ## Установка
 
-1. Создайте виртуальное окружение:
+1. Клонируйте репозиторий:
+```bash
+git clone https://github.com/your-username/fastapi-postgresql.git
+cd fastapi-postgresql
+```
+
+2. Создайте виртуальное окружение:
 ```bash
 python -m venv venv
 source venv/bin/activate  # для Linux/Mac
 venv\Scripts\activate     # для Windows
 ```
 
-2. Установите зависимости:
+3. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Создайте файл .env в корневой директории проекта:
+4. Создайте файл .env в корневой директории:
 ```
-DATABASE_URL=postgresql://user:password@localhost:5432/dbname
+PG_HOST=localhost
+PG_USER=postgres
+PG_PASS=postgres
+PG_DB=fastapi_db
 ```
 
-4. Примените миграции:
+5. Примените миграции:
 ```bash
 alembic upgrade head
 ```
 
-5. Запустите сервер:
+6. Запустите сервер:
 ```bash
 uvicorn app.main:app --reload
 ```
 
-## Структура проекта
+## API Endpoints
 
-```
-├── alembic/              # Миграции базы данных
-├── app/
-│   ├── api/             # API endpoints
-│   ├── core/            # Конфигурация и настройки
-│   ├── db/              # Работа с базой данных
-│   ├── models/          # SQLAlchemy модели
-│   └── schemas/         # Pydantic схемы
-├── tests/               # Тесты
-├── .env                 # Переменные окружения
-├── alembic.ini          # Конфигурация Alembic
-└── requirements.txt     # Зависимости проекта
-``` 
+- `GET /api/v1/tasks` - получить список задач
+- `POST /api/v1/tasks` - создать новую задачу
+- `GET /api/v1/tasks/{task_id}` - получить задачу по ID
+- `PUT /api/v1/tasks/{task_id}` - обновить задачу
+- `PATCH /api/v1/tasks/{task_id}/status` - изменить статус задачи
+- `DELETE /api/v1/tasks/{task_id}` - удалить задачу
+
+## Документация API
+
+После запуска сервера документация доступна по адресам:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc 

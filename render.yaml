@@ -27,5 +27,5 @@ services:
 databases:
   - name: fastapi-db
     databaseName: fastapi_db
-    user: postgres
+    user: fastapi_user
     plan: free 
